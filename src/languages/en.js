@@ -1,4 +1,6 @@
 export default {
     hello: "Hello Friend",
-    about: "About Me"
+    about: "About Me",
+    
+
 }

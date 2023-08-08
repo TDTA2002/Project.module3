@@ -3,7 +3,7 @@ import api from '@api';
 
 export default function Register() {
   return (
-    <div>
+    <div >
       Register
       <form onSubmit={async (e) => {
         e.preventDefault();
@@ -16,28 +16,30 @@ export default function Register() {
           password: e.target.password.value,
         }
 
+        try {
+          let result = await api.users.register(newUser);
 
-          let result = await api.users.register(newUser)
-
-          if (result.status != 200) {
-            alert(result.response.data.message)
-          }else {
-            alert(result.data != undefined ? result.data.message : result.message)
+          if (result.status !== 200) {
+            alert(result.response.data.message);
+          } else {
+            alert(result.data.message);
           }
-        
+        } catch (error) {
+          alert("à lôi lỗi rồi");
+        }
 
       }}>
-          User Name <input type="text" name='user_name'/>
-          <br></br>
-          Email <input type="text" name='email'/>
-          <br></br>
-          First name <input type="text" name='first_name'/>
-          <br></br>
-          Last name <input type="text" name='last_name'/>
-          <br></br>
-          Password <input type="password" name='password'/>
-          <br></br>
-          <button type='submit'>Register</button>
+        User Name <input type="text" name='user_name' />
+        <br></br>
+        Email <input type="text" name='email' />
+        <br></br>
+        First name <input type="text" name='first_name' />
+        <br></br>
+        Last name <input type="text" name='last_name' />
+        <br></br>
+        Password <input type="password" name='password' />
+        <br></br>
+        <button type='submit'>Register</button>
       </form>
     </div>
   )
