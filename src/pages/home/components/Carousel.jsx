@@ -284,18 +284,11 @@ export default function carousel() {
                     }}
                 />
             </section>
-            <div class="container section-title-container">
-                <h3 class="section-title section-title-center">
-                    <b></b>
-                    <span class="section-title-main">DÒNG SẢN PHẨM</span>
-                    <b></b>
-                    <img src="https://akkogear.com.vn/wp-content/uploads/2020/05/line.png" alt="" />
-                </h3>
-            </div>
+
             <ListProduct />
             <Mouse />
             <Keyboard />
-            <ACCESSORY/>
+            <ACCESSORY />
         </>
     )
 }

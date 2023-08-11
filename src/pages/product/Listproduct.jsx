@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoryActions } from '../.././stores/slices/category';
+import "./scss/listproduct.scss"
 
 export default function ListProduct() {
     const dispatch = useDispatch();
@@ -10,10 +11,10 @@ export default function ListProduct() {
         if (type == "KeyBoard") {
             dispatch(categoryActions.findByCategory(1));
         }
-        if (type == "Key-Kit") {
+        if (type == "key-kit") {
             dispatch(categoryActions.findByCategory(2));
         }
-        if (type == "Switch") {
+        if (type == "switch") {
             dispatch(categoryActions.findByCategory(3));
         }
     }, [type])
@@ -34,13 +35,13 @@ export default function ListProduct() {
                             </div>
                         </div>
                     </div>
-                    <div className="row" >
+                    <div className="row" style={{ gap: "50px" }} >
                         {
                             categoryStore?.data?.map((product, index) => (
                                 <Link to={`/products/${product.id}`} className="col-md-6 col-lg-4 col-xl-3" key={index} >
                                     <div id="product-2" className="single-product">
                                         <div className="part-1">
-                                            <img src={product.avatar} alt="" />
+                                            <img style={{ height: "300px", width: "300px" }} src={product.avatar} alt="" />
                                             <span className="discount">15% off</span>
                                             <ul>
                                                 <li>

@@ -1,6 +1,6 @@
 import "./home.scss";
 import { Outlet, Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import Navbar from '@components/Navbar'
 import Footer from '@components/Footer'
@@ -9,9 +9,15 @@ import { useTranslation } from "react-i18next";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '@actions/user';
-
+import Test from "../product/test1/test"
+import { RootContext } from "../../App";
 
 function Home() {
+
+  const { userStore } = useContext(RootContext);
+  const { cartStore } = useContext(RootContext);
+
+  console.log("userStore",userStore);
   const store = useSelector(store => store)
   const { t } = useTranslation();
 
@@ -35,14 +41,12 @@ function Home() {
         </div>
       </section>
       {/* Navbar */}
-      <Navbar />
+      <Navbar userStore={userStore} cartStore={cartStore}/>
       {/* <Carousel /> */}
       {/* Body */}
-      <section className="body_container">
-        <div className="body_container_center">
-          <Outlet />
-        </div>
-      </section>
+      {/* <Test /> */}
+      <Outlet />
+
       {/* Footer */}
       {/* <Footer /> */}
     </div>
