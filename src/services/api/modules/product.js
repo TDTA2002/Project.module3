@@ -6,5 +6,8 @@ export default {
     },
     readMany: async (status = undefined) => {
         return await axios.get(`${process.env.REACT_APP_SERVER_HOST_API}/products/`)
+    },
+    search: async function (searchString) {
+        return await axios.get(`${process.env.REACT_APP_SERVER_HOST_API}/products?search=${searchString}`)
     }
 }

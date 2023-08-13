@@ -22,7 +22,9 @@ import { categoryReducer } from "./slices/category";
 
 import { productReducer } from "./slices/product";
 
-import { cartReducer } from "./slices/cart";
+import { cartReducer } from "./slices/purchase";
+
+import { receiptReducer } from "./slices/receipt";
 
 const store = configureStore({
   reducer: {
@@ -30,6 +32,8 @@ const store = configureStore({
     categoryStore: categoryReducer,
     productStore: productReducer,
     cartStore: cartReducer,
+    receiptStore: receiptReducer
+
   },
 });
 

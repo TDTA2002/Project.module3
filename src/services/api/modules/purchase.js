@@ -20,5 +20,16 @@ export default {
         return await axios.delete(
             `${process.env.REACT_APP_SERVER_HOST_API}/purchase/${product_id}`
         )
+    },
+    updateCart: async (user_id, data) => {
+        return await axios.patch(
+            `${process.env.REACT_APP_SERVER_HOST_API}/purchase/${user_id}`,
+            data,
+            {
+                headers: {
+                    Authorization: localStorage.getItem("token")
+                }
+            }
+        )
     }
 }

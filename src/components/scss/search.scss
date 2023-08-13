@@ -1,0 +1,93 @@
+.toggle-buttonn {
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  .offcanvass {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  
+    &.show {
+      opacity: 1;
+    }
+  }
+  
+  .offcanvas-headerr {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .offcanvas-titlee {
+    margin: 0;
+  }
+  
+  .close-buttonn {
+    background-color: transparent;
+    border: none;
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .offcanvas-body {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  
+    .search-input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+  
+    .product-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  
+      li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+  
+        img {
+          width: 60px;
+          height: 60px;
+          margin-right: 10px;
+          object-fit: cover;
+        }
+  
+        h3 {
+          margin: 0;
+        }
+  
+        p {
+          margin: 0;
+          margin-left: auto;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  

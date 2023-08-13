@@ -41,12 +41,33 @@ function App() {
       })
   }, [store.userStore.data])
 
+  useEffect(() => {
+    if (!store.userStore.data) {
+      return;
+    }
+    api.receipt
+      .findReceipt(store.userStore.data?.id)
+      .then((res) => {
+        if (res.status == 200) {
+          dispatch(
+            actions.receiptActions.setReceiptData(res.data.data)
+          );
+        } else {
+          alert(res.data.message);
+        }
+      })
+      .catch((err) => {
+        alert("sập!");
+      });
+  }, [store.userStore.data]);
+
   return (
     <RootContext.Provider value={
       {
         userStore: store.userStore,
         cartStore: store.cartStore,
-        dispatch
+        receiptStore: store.receiptStore,
+        dispatch,
       }
     }>
       <Routes>

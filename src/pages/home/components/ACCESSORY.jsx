@@ -14,7 +14,6 @@ export default function Mouse() {
     const categoryStore = useSelector(store => store.categoryStore);
 
     const ShowUrl = 2;
-    console.log("categoryStore1", categoryStore);
 
     return (
         <section className="section section-ban-phim" id="section_636757238">

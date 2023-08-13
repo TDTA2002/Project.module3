@@ -11,6 +11,11 @@ const readMany = createAsyncThunk("/readMany", async (status = undefined) => {
     return result.data;
 });
 
+const findAllProducts = createAsyncThunk("/find_all_products", async () => {
+    let result = await api.products.findAllProducts();
+    return result.data;
+})
+
 
 const productSlice = createSlice({
     name: "product",
@@ -24,6 +29,11 @@ const productSlice = createSlice({
             // console.log("action.payload", action.payload);
             state.data = { ...action.payload.data };
         });
+        builder.addCase(findAllProducts.fulfilled, (state, action) => {
+            state.data = [...action.payload.data]
+        });
+
+        
         builder.addCase(readMany.fulfilled, (state, action) => {
             // console.log("action.payload", action.payload);
             state.data = { ...action.payload.data };
@@ -60,7 +70,8 @@ const productSlice = createSlice({
 export const productActions = {
     ...productSlice.actions,
     findProductById,
-    readMany
+    readMany,
+    findAllProducts
 }
 
 export const productReducer = productSlice.reducer;

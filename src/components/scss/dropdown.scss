@@ -1,0 +1,106 @@
+.gio-hang-dropdown {
+    position: relative;
+    display: inline-block;
+  
+    .gio-hang-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+  
+    .gio-hang-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: -450px; // Di chuyển dropdown qua trái 10px
+      z-index: 1;
+      min-width: 200px;
+      padding: 10px;
+      background-color: #fff;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      animation: fade 0.3s ease-in-out;
+      width: 500px;  
+      .product {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        gap: 20px;
+        .product-image {
+          width: 120px;
+          height: 120px;
+          object-fit: cover;
+          margin-right: 10px;
+        }
+  
+        .product-details {
+          flex-grow: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 70%;
+        }
+  
+        .product-name {
+          font-weight: bold;
+          margin: 0;
+        }
+  
+        .product-price {
+          margin: 0;
+          color: #888;
+        }
+  
+        .product-controls {
+          display: flex;
+          align-items: center;
+          margin-left: auto;
+  
+          .control-button {
+            background-color: #f0f0f0;
+            border: none;
+            color: #333;
+            font-size: 16px;
+            padding: 5px 10px;
+            cursor: pointer;
+          }
+  
+          .quantity {
+            margin: 0 10px;
+          }
+  
+          .delete-button {
+            background-color: #ff4d4f;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            padding: 5px 10px;
+            cursor: pointer;
+          }
+        }
+      }
+  
+      .checkout {
+        margin-top: 10px;
+        text-align: center;
+        font-weight: bold;
+        color: #007bff;
+        cursor: pointer;
+      }
+    }
+  
+    &:hover .gio-hang-content {
+      display: block;
+    }
+  }
+  
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

@@ -4,8 +4,6 @@
     border: 0;
     font-size: 100%;
     box-sizing: border-box;
-
-
   }
 
   @import "@scss";
@@ -26,7 +24,7 @@
       font-size: 1em;
       position: sticky;
       top: 0;
-      z-index: $zi_max;
+      z-index: 10;
 
       .before_nav_content {
         width: $maxW;
@@ -81,7 +79,7 @@
       justify-content: center;
       position: sticky;
       top: $beforeNavH;
-      z-index: $zi_max;
+      z-index: 10;
 
       .nav_content {
         width: 100%;
@@ -138,16 +136,16 @@
       }
     }
 
-    .body_container {
-      width: 100%;
-      height: 100vh;
-      background-color: $cl_body_main;
-      display: flex;
-      justify-content: center;
+    // .body_container {
+    //   width: 100%;
+    //   height: 100vh;
+    //   background-color: $cl_body_main;
+    //   display: flex;
+    //   justify-content: center;
 
-      .body_container_center {
-        width: $maxW;
-        height: 100%;
-      }
-    }
+    //   .body_container_center {
+    //     width: $maxW;
+    //     height: 100%;
+    //   }
+    // }
   }
