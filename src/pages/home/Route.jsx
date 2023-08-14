@@ -23,6 +23,6 @@ export default (
     <Route path="/test" element={<GioHangDropdown />}></Route>
     <Route path="/payment" element={<Payment />}></Route>
     <Route path="/receipts" element={<Receipts />}></Route>
-
+    
   </Route>
 );

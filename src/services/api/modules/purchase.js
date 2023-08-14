@@ -11,10 +11,16 @@ export default {
             }
         )
     },
-    addToCart: async (user_id, data) => {
+    addToCart: async (userId, data) => {
         return await axios.post(
-            `${process.env.REACT_APP_SERVER_HOST_API}/purchase/${user_id}`, data
-        )
+            `${process.env.REACT_APP_SERVER_HOST_API}/purchase/${userId}`,
+            data,
+            {
+                headers: {
+                    Authorization: localStorage.getItem("token"),
+                },
+            },
+        );
     },
     deleteProductFromCart: async (product_id) => {
         return await axios.delete(

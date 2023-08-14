@@ -1,29 +1,74 @@
-import React, { useContext, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { productActions } from '../../stores/slices/product';
 import { RootContext } from '../../App';
-import actions from '../../stores/actions';
 import Picture from './Picture';
 import ProductThumbnails from './Piceturem';
+import api from '@api';
+import actions from '../../stores/actions';
+import { Modal } from 'antd';
 
 
 export default function Detail() {
 
 
-    function addToCart(userId, product) {
-        dispatch(actions.cartActions.addToCart({ userId, product }))
-    }
-
-
-    const { userStore } = useContext(RootContext);
+    const [quantity, setQuantity] = useState(1);
     const { id } = useParams();
-    const dispatch = useDispatch();
-    const productStore = useSelector(store => store.productStore);
+    const { userStore, productStore, dispatch, productActions, cartActions, setLocalCartState, localCartState } = useContext(RootContext);
 
     useEffect(() => {
-        dispatch(productActions.findProductById(id))
-    }, [id])
+        dispatch(productActions.findProductById(id));
+    }, [id]);
+    function addToCart() {
+        let data = {
+            product_id: productStore.data.id,
+            quantity,
+        };
+
+        if (localStorage.getItem("token")) {
+            api.purchase
+                .addToCart(userStore.data.id, data)
+                .then((res) => {
+                    api.purchase.findCart(userStore.data?.id)
+                        .then(res => {
+                            if (res.status == 200) {
+                                dispatch(actions.cartActions.setCartData(res.data.data))
+                            } else {
+                                alert(res.data.message)
+                            }
+                        })
+                        .catch(err => {
+                            console.log("err", err)
+                            alert("sập!")
+                        })
+                })
+                .catch((err) => {
+                    console.log("err", err);
+                    alert("looix");
+                });
+        } else {
+            let carts = localStorage.getItem("carts");
+            if (carts) {
+                carts = JSON.parse(carts);
+                let flag = false;
+                carts = carts.map((item) => {
+                    if (item.product_id == data.product_id) {
+                        item.quantity += data.quantity;
+                        flag = true;
+                    }
+                    return item;
+                });
+                if (!flag) {
+                    carts.push(data);
+                }
+                localStorage.setItem("carts", JSON.stringify(carts)); // save
+            } else {
+                let cartTemp = [];
+                cartTemp.push(data);
+                localStorage.setItem("carts", JSON.stringify(cartTemp)); // save
+            }
+            setLocalCartState(!localCartState)
+        }
+    }
 
 
     return (
@@ -49,7 +94,7 @@ export default function Detail() {
                     <div className="product-info summary entry-summary col col-fit product-summary">
                         <h1 className="product-title product_title entry-title">
                             {" "}
-                            Bàn phím cơ AKKO 3108 RF World Tour Tokyo (Dual-mode / AKKO sw v3)
+                            {productStore?.data?.name}
                         </h1>
                         <div className="price-wrapper">
                             <p className="price product-page-price ">
@@ -77,16 +122,52 @@ export default function Detail() {
 
 
                             </div>{" "}
-                            <button className='add_to_cart_btn' onClick={() => addToCart(userStore?.data?.id, {
-                                product_id: productStore?.data?.id,
-                                quantity: 1
-                            })}>Add to cart</button>
+
 
                         </form>
+                        <div className="count_product">
+                            <button
+                                className="count"
+                                onClick={() => {
+                                    if (quantity > 1) {
+                                        setQuantity(quantity - 1);
+                                    }
+                                }}
+                            >
+                                <span className="material-symbols-outlined">-</span>
+                            </button>
+
+                            <span className="quantity" style={{ fontSize: "25px" }}>
+                                {quantity}
+                            </span>
+                            <button
+                                className="count"
+                                onClick={() => {
+                                    if (quantity > 0) {
+                                        setQuantity(quantity + 1);
+                                    }
+                                }}
+                            >
+                                <span className="material-symbols-outlined">+</span>
+                            </button>
+                        </div>
+                        <button
+                            onClick={() => {
+                                addToCart();
+                                Modal.success({
+                                    content: "Register sucsses",
+                                });
+                            }}
+                            type="submit"
+                            className="addToCart"
+
+                        >
+                            Add To Cart
+                        </button>
                         <div className="product_meta">
                             {" "}
                             <span className="posted_in">
-                                {productStore?.data?.des}
+                                Chi Tiết: {productStore?.data?.des}
                             </span>
                         </div>
                     </div>

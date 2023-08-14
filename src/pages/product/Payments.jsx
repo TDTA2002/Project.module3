@@ -4,7 +4,7 @@ import { RootContext } from "@/App";
 import { convertToUSD, randomId } from "@mieuteacher/meomeojs";
 import axios from "axios";
 import Qr from "./Qr";
-import { message } from "antd";
+import { Modal, message } from "antd";
 export default function Payment() {
     const { cartStore, userStore } = useContext(RootContext);
     const [cartItems, setCartItems] = useState(null);
@@ -48,7 +48,12 @@ export default function Payment() {
                 receiptDetails,
             })
             .then((res) => {
-                message.success("Cảm ơn bạn đã mua hàng!");
+                Modal.success({
+                    content: "Thank you for your purchase",
+                    onOk: () => {
+                        window.location.href = "/";
+                    },
+                });
                 // chuyển trang receipt
                 console.log("Đã save receipt", res.data);
             })
@@ -193,15 +198,13 @@ export default function Payment() {
                                 />
                                 <span> Zalo</span>
 
-                                <input
+                                {/* <input
                                     type="radio"
                                     name="payment"
                                     value="MOMO"
                                 />
-                                <span>Momo</span>
-                                <div className="shippingDetails_button">
-                                    <img src="../images/payment.png" />
-                                </div>
+                                <span>Momo</span> */}
+                               
                             </div>
                             <button
                                 type="submit"

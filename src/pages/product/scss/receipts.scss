@@ -2,12 +2,13 @@
 .informationLine_receipts {
     border: 1px solid black;
     padding: 20px;
-    width: 1024px;
+    width: 60%;
     overflow-y: auto;
     overflow-x: hidden;
     height: 100%;
     margin-top: 50px;
-
+    margin-left: 300px;
+    
     .informationLine_h2 {
         font-family:'Courier New', Courier, monospace;
     }
@@ -23,7 +24,6 @@
         }
 
         .informationLine_text {
-            margin-left: 30px;
 
             h4 {
                 color: green;

@@ -14,27 +14,27 @@ export default function OptionNavigate(props) {
                   props.setOptionActive(index)
                   
                 }} className={`nav-link ${props.optionActive == index ? "active" : ""}`} aria-current="page" href="#">
-                    {option.name}
+
                   </a>
                   <span style={{cursor: "pointer"}} onClick={() => {
                     props.setNameEdit(option.name)
                     props.setOptionActive(index)
-                  }} data-toggle="modal" data-target="#exampleModal">Edit</span>
+                  }} data-toggle="modal" data-target="#exampleModal"></span>
                   <span onClick={() => {
                     if(window.confirm("Xóa OK?")) {
                       props.setOptionActive(index)
                       props.deleteOptions(index);
                     }
-                  }} style={{margin: "0 10px", cursor: "pointer"}}>Delete</span>
+                  }} style={{margin: "0 10px", cursor: "pointer"}}></span>
                 </li>
               ))
             }
           </ul>
         </div>
       </div>
-      <button type='button' onClick={() => {
+      <a type='button' onClick={() => {
         props.addOptions();
-      }}>Thêm</button>
+      }}></a>
     </div>
   )
 }

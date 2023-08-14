@@ -1,18 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './scss/mouse.scss'
-import { Link, useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { categoryActions } from '../../../stores/slices/category'
+import { Link } from 'react-router-dom'
+
+import axios from 'axios'
 
 export default function Mouse() {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(categoryActions.findByCategory(1));
-    }, [1]);
-
-    const categoryStore = useSelector(store => store.categoryStore);
     const ShowUrl = 2;
+    const [categoryyy, setCategoryyy] = useState(null);
 
+    useEffect(() => {
+        axios.get('http://localhost:4000/apis/v1/categories/3')
+            .then(response => {
+                setCategoryyy(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
     return (
         <section className="section section-ban-phim" id="section_636757238">
             <div className="bg section-bg fill bg-fill bg-loaded" />
@@ -23,9 +27,9 @@ export default function Mouse() {
                             <div className="container section-title-container">
                                 <h3 className="section-title section-title-normal">
                                     <b />
-                                    <span className="section-title-main">Key-Kit</span>
+                                    <span className="section-title-main">Switch</span>
                                     <b />
-                                    <Link to="/key-kit" target="">
+                                    <Link to="/switch" target="">
                                         Xem tất cả
                                         <i className="icon-angle-right" />
                                     </Link>
@@ -36,7 +40,7 @@ export default function Mouse() {
                                 data-flickity-options='{"imagesLoaded": true, "groupCells": "100%", "dragThreshold" : 5, "cellAlign": "left","wrapAround": true,"prevNextButtons": true,"percentPosition": true,"pageDots": false, "rightToLeft": false, "autoPlay" : 3000}'
                             >
                                 {
-                                    categoryStore?.data?.map((product, index) => (
+                                    categoryyy?.data?.map((product, index) => (
                                         <div
                                             className="product-small col has-hover product type-product post-7071 status-publish first instock product_cat-layout-75 product_cat-akko-switch-v3 product_cat-ban-phim product_cat-gasket-mount product_cat-hotswap product_cat-monsgeek product_cat-oem-profile product_cat-pbt-double-shot product_cat-rgb product_cat-south-facing product_tag-ban-phim-monsgeek-m1-qmk-silver-full-nhom-mach-xuoi-qmk-via-rgb-hotswap has-post-thumbnail shipping-taxable purchasable product-type-simple"
                                             key={index}
@@ -71,9 +75,8 @@ export default function Mouse() {
                                                     <div className="box-text box-text-products">
                                                         <div className="title-wrapper">
                                                             <p className="name product-title woocommerce-loop-product__title">
-                                                                <a href="https://akkogear.com.vn/san-pham/ban-phim-monsgeek-m1-qmk-silver/">
-                                                                    Bàn phím MonsGeek M1 QMK Silver (Full Nhôm – Mạch xuôi
-                                                                    – QMK / VIA – RGB – Hotswap)
+                                                                <a >
+                                                                    {product.name}
                                                                 </a>
                                                             </p>
                                                         </div>
@@ -82,7 +85,7 @@ export default function Mouse() {
                                                             <span className="price">
                                                                 <span className="woocommerce-Price-amount amount">
                                                                     <bdi>
-                                                                        2,799,000&nbsp;
+                                                                        {product.product_options[0].price}&nbsp;
                                                                         <span className="woocommerce-Price-currencySymbol">
                                                                             ₫
                                                                         </span>
@@ -110,30 +113,3 @@ export default function Mouse() {
 
     )
 }
-
-
-// categoryStore?.data?.map((product, index) => (
-//     <Link to={`/products/${product.id}`} className="col-md-6 col-lg-4 col-xl-3" key={index} >
-//         <div id="product-2" className="single-product">
-//             <div className="part-1">
-//                 <img style={{ height: "300px", width: "300px" }} src={product.avatar} alt="" />
-//                 <span className="discount">15% off</span>
-//                 <ul>
-//                     <li>
-//                         <a href="#">
-//                             <i className="fas fa-shopping-cart" />
-//                         </a>
-//                     </li>
-
-//                 </ul>
-//             </div>
-//             <div className="part-2">
-//                 <h3 className="product-title">{product.name}</h3>
-//                 <h4 className="product-price">${product.product_options[0].price}</h4>
-//             </div>
-//         </div>
-//     </Link>
-
-// ))
-
-

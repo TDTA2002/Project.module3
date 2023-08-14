@@ -30,7 +30,6 @@ export default function ListProduct() {
                     <div className="row justify-content-center text-center">
                         <div className="col-md-8 col-lg-6">
                             <div className="header">
-                                <h3>Mouse</h3>
                                 <h2>Popular Products</h2>
                             </div>
                         </div>
@@ -38,8 +37,8 @@ export default function ListProduct() {
                     <div className="row" style={{ gap: "50px" }} >
                         {
                             categoryStore?.data?.map((product, index) => (
-                                <Link to={`/products/${product.id}`} className="col-md-6 col-lg-4 col-xl-3" key={index} >
-                                    <div id="product-2" className="single-product">
+                                <Link to={`/products/${product.id}`} className="col-md-6 col-lg-4 col-xl-3" key={index} style={{ width: "300px", height: "300px" }}>
+                                    <div id="product-2" className="single-product" >
                                         <div className="part-1">
                                             <img style={{ height: "300px", width: "300px" }} src={product.avatar} alt="" />
                                             <span className="discount">15% off</span>

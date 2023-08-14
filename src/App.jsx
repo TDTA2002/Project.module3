@@ -1,6 +1,6 @@
 import "./main.scss";
 import { Routes } from "react-router-dom";
-import { useEffect, createContext } from 'react';
+import { useEffect, createContext, useState } from 'react';
 
 /* Route Config */
 import AuthRoute from "@pages/auths/Route";
@@ -15,6 +15,7 @@ export const RootContext = createContext();
 
 
 function App() {
+  const [localCartState, setLocalCartState] = useState(false);
   const store = useSelector(store => store)
   const dispatch = useDispatch();
 
@@ -67,7 +68,11 @@ function App() {
         userStore: store.userStore,
         cartStore: store.cartStore,
         receiptStore: store.receiptStore,
+        productStore: store.productStore,
+        productActions: actions.productActions,
         dispatch,
+        localCartState,
+        setLocalCartState
       }
     }>
       <Routes>

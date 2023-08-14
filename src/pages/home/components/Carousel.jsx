@@ -24,7 +24,7 @@ export default function carousel() {
                                 {" "}
                                 <a
                                     className=""
-                                    href="https://akkogear.com.vn/san-pham/ban-phim-akko-5108s-naraka-blade-point/"
+                              
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -56,7 +56,7 @@ export default function carousel() {
                                 {" "}
                                 <a
                                     className=""
-                                    href="https://akkogear.com.vn/san-pham/kit-ban-phim-co-monsgeek-m3-qmk/"
+                                
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -88,7 +88,6 @@ export default function carousel() {
                                 {" "}
                                 <a
                                     className=""
-                                    href="https://akkogear.com.vn/san-pham/kit-ban-phim-co-monsgeek-m2-qmk/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -120,7 +119,6 @@ export default function carousel() {
                                 {" "}
                                 <a
                                     className=""
-                                    href="https://akkogear.com.vn/?s=MG108W&post_type=product"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -152,7 +150,6 @@ export default function carousel() {
                                 {" "}
                                 <a
                                     className=""
-                                    href="https://akkogear.com.vn/san-pham/kit-ban-phim-monsgeek-m1-qmk/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -184,7 +181,6 @@ export default function carousel() {
                                 {" "}
                                 <a
                                     className=""
-                                    href="https://akkogear.com.vn/danh-muc/dong/sailor-moon/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -216,7 +212,6 @@ export default function carousel() {
                                 {" "}
                                 <a
                                     className=""
-                                    href="https://akkogear.com.vn/danh-muc/phan-loai-layout-akko/layout-75/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -248,7 +243,6 @@ export default function carousel() {
                                 {" "}
                                 <a
                                     className=""
-                                    href="https://akkogear.com.vn/danh-muc/phan-loai-layout-akko/layout-98/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -286,9 +280,9 @@ export default function carousel() {
             </section>
 
             <ListProduct />
-            <Mouse />
-            <Keyboard />
             <ACCESSORY />
+            <Keyboard />
+            <Mouse />
         </>
     )
 }
